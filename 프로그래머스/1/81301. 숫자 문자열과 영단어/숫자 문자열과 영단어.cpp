@@ -1,81 +1,21 @@
 #include <string>
 #include <vector>
+#include <regex>
 
 using namespace std;
 
 int solution(string s)
 {
-    int answer = 0;
-    string str = "";
-    
-    for (int i = 0; i < s.size(); ++i)
-    {
-        if (s[i] == 'z')
-        {
-            str += '0';
-            i += 3;
-        }
-        else if (s[i] == 'o')
-        {
-            str += '1';
-            i += 2;
-        }
-        else if (s[i] == 't')
-        {
-            if (s[i + 1] == 'w')
-            {
-                str += '2';
-                i += 2;
-            }
-            else if (s[i + 1] == 'h')
-            {
-                str += '3';
-                i += 4;
-            }
-        }
-        else if (s[i] == 'f')
-        {
-            if (s[i + 1] == 'o')
-            {
-                str += '4';
-                i += 3;
-            }
-            else if (s[i + 1] == 'i')
-            {
-                str += '5';
-                i += 3;
-            }
-        }
-        else if (s[i] == 's')
-        {
-            if (s[i + 1] == 'i')
-            {
-                str += '6';
-                i += 2;
-            }
-            else if (s[i + 1] == 'e')
-            {
-                str += '7';
-                i += 4;
-            }
-        }
-        else if (s[i] == 'e')
-        {
-            str += '8';
-            i += 4;
-        }
-        else if (s[i] == 'n')
-        {
-            str += '9';
-            i += 3;
-        }
-        else
-        {
-            str += s[i];
-        }
-    }
-    
-    answer = stoi(str);
-    
-    return answer;
+    s = regex_replace(s, regex("zero"), "0");
+    s = regex_replace(s, regex("one"), "1");
+    s = regex_replace(s, regex("two"), "2");
+    s = regex_replace(s, regex("three"), "3");
+    s = regex_replace(s, regex("four"), "4");
+    s = regex_replace(s, regex("five"), "5");
+    s = regex_replace(s, regex("six"), "6");
+    s = regex_replace(s, regex("seven"), "7");
+    s = regex_replace(s, regex("eight"), "8");
+    s = regex_replace(s, regex("nine"), "9");
+
+    return stoi(s);
 }
