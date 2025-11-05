@@ -8,7 +8,7 @@ vector<int> arr;
 
 int solution(vector<int> citations)
 {
-	for (int i = 0; i <= 10000; ++i)
+	for (int i = 0; i <= citations.size(); ++i)
 	{
 		int h = i;
 		int cited1 = 0;
