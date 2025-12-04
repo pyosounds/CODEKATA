@@ -27,11 +27,9 @@ string reverse(stack<char>& s)
 
 string solution(string number, int k)
 {
-	string answer = "";
+	string answer = "";	
 
-	s.push(number[0]);
-
-	for (int i = 1; i < number.size(); ++i)
+	for (int i = 0; i < number.size(); ++i)
 	{
 		if (!s.empty())
 		{
