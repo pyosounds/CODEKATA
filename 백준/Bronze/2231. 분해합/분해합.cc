@@ -11,8 +11,10 @@ int main()
 	cin >> N;
 
 	int Check = 0;
+	int s = N - to_string(N).size() * 9;
+	s = max(1, s);
 
-	for (int i = 1; i <= N; ++i)
+	for (int i = s; i <= N; ++i)
 	{
 		int Sum = i;
 		string s = to_string(i);
