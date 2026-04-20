@@ -1,14 +1,14 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-
-
 int main()
 {
 	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
 
 	while (true)
 	{
+		stack<char> S;
+
 		string str;
 		getline(cin, str);
 
@@ -17,42 +17,37 @@ int main()
 			break;
 		}
 
-		stack<char> s;
-		bool check = true;
+		bool Check = true;
 
-		for (int i = 0; i < str.size(); ++i)
+		for (const auto& e : str)
 		{
-			if (str[i] == ')')
+			if (e == '(' || e == '[')
 			{
-				if (!s.empty() && s.top() == '(')
+				S.push(e);
+			}
+			else if (e == ')')
+			{
+				if (S.empty() || S.top() != '(')
 				{
-					s.pop();
-				}
-				else
-				{
-					check = false;
+					Check = false;
 					break;
 				}
+
+				S.pop();
 			}
-			else if (str[i] == ']')
+			else if (e == ']')
 			{
-				if (!s.empty() && s.top() == '[')
+				if (S.empty() || S.top() != '[')
 				{
-					s.pop();
-				}
-				else
-				{
-					check = false;
+					Check = false;
 					break;
 				}
-			}
-			else if (str[i] == '(' || str[i] == '[')
-			{
-				s.push(str[i]);
+
+				S.pop();
 			}
 		}
 
-		if (check && s.empty())
+		if (S.empty() && Check)
 		{
 			cout << "yes\n";
 		}
