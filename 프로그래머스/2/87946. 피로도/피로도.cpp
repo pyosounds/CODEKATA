@@ -3,10 +3,11 @@
 
 using namespace std;
 
-bool Visited[9];
+const int MAX = 9;
+bool visited[MAX];
 int answer;
 
-void DFS(int k, int cnt, const vector<vector<int>>& dungeons)
+void backtrack(int k, int cnt, const vector<vector<int>>& dungeons)
 {
 	if (k < 0)
 	{
@@ -15,12 +16,14 @@ void DFS(int k, int cnt, const vector<vector<int>>& dungeons)
 
 	for (int i = 0; i < dungeons.size(); ++i)
 	{
-		if (!Visited[i] && k >= dungeons[i][0])
+		if (visited[i] || k - dungeons[i][0] < 0)
 		{
-			Visited[i] = true;
-			DFS(k - dungeons[i][1], cnt + 1, dungeons);
-			Visited[i] = false;
+			continue;
 		}
+
+		visited[i] = true;
+		backtrack(k - dungeons[i][1], cnt + 1, dungeons);
+		visited[i] = false;
 	}
 
 	answer = max(answer, cnt);
@@ -28,7 +31,7 @@ void DFS(int k, int cnt, const vector<vector<int>>& dungeons)
 
 int solution(int k, vector<vector<int>> dungeons)
 {
-	DFS(k, 0, dungeons);
+	backtrack(k, 0, dungeons);
 
 	return answer;
 }
